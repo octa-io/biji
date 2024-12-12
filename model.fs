@@ -1,4 +1,5 @@
 open System
+open System.Collections.Generic
 
 type Part = {PartNumber: string}
 
@@ -6,6 +7,7 @@ type PartEntry =
     { Part: Part
       Quantity: int }
     
+
 type KitSet =
     { KitId: string
       LineItem: Set<PartEntry> }
