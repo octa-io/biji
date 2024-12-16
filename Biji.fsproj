@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Microsoft.JSInterop.Prelude.fs" />
+    <Compile Include="Microsoft.JSInterop.fs" />
+    <Compile Include="Frontend.Core.fs" />
+    <Compile Include="Frontend.fs" />
+    <Compile Include="DragAndDropProgram.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Browser.Dom" Version="2.18.0" />
+    <PackageReference Include="Fable.Core" Version="4.3.0" />
+    <PackageReference Include="Oxpecker.Solid" Version="0.4.0" />
+  </ItemGroup>
+
+</Project>
