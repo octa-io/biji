@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Fable with Vite",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "dotnet",
+            "runtimeArgs": [
+                "fable",
+                "watch",
+                "--lang",
+                "javascript",
+                "--verbose",
+                "--exclude",
+                "Oxpecker.Solid.FablePlugin",
+                "--extension",
+                ".jsx",
+                "--run",
+                "npx",
+                "vite"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

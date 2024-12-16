@@ -1,0 +1,30 @@
+{
+  "private": "true",
+  "name": "biji",
+  "version": "1.0.0",
+  "description": "笔记。 Bǐjì.\r =============\r Notes and more.",
+  "main": "Program.fs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "dotnet tool restore",
+    "start": "dotnet fable watch --exclude Oxpecker.Solid.FablePlugin --noCache --extension .jsx --run vite",
+    "build": "dotnet fable --exclude Oxpecker.Solid.FablePlugin --noCache --extension .jsx --run vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "ts2fable": "^0.7.1",
+    "vite": "^6.0.3",
+    "vite-plugin-solid": "^2.11.0"
+  },
+  "dependencies": {
+    "@microsoft/dotnet-js-interop": "^8.0.0",
+    "@solidjs/router": "^0.15.2",
+    "bootstrap": "^5.3.3",
+    "solid-js": "^1.8.22"
+  }
+}
