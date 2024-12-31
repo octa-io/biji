@@ -92,15 +92,15 @@ export function DragAndDrop_dropArr1() {
     return [];
 }
 
-export const DragAndDrop_patternInput$004051$002D106 = createStore({
+export const DragAndDrop_patternInput$004051 = createStore({
     dragArray: DragAndDrop_dragArr,
     dropZone0: DragAndDrop_dropArr0(),
     dropZone1: DragAndDrop_dropArr1(),
 });
 
-export const DragAndDrop_store = DragAndDrop_patternInput$004051$002D106[0];
+export const DragAndDrop_store = DragAndDrop_patternInput$004051[0];
 
-export const DragAndDrop_setStore = DragAndDrop_patternInput$004051$002D106[1];
+export const DragAndDrop_setStore = DragAndDrop_patternInput$004051[1];
 
 export function DragAndDrop_addDropItem(arg, dropZone) {
     let Id, Name;
@@ -304,13 +304,12 @@ export function DragAndDrop_setupDragDropWithDispatch(dispatch) {
                 console.log(some(x.partNumber));
             }
         });
-        dropZone.addEventListener("dragleave", (e_1) => {
-            console.trace(some(e_1));
+        dropZone.addEventListener("dragleave", (_arg) => {
             dropZone.classList.remove("drag-over");
         });
-        dropZone.addEventListener("drop", (e_2) => {
+        dropZone.addEventListener("drop", (e_1) => {
             let copyOfStruct, copyOfStruct_1;
-            const event_1 = e_2;
+            const event_1 = e_1;
             event_1.preventDefault();
             dropZone.classList.remove("drag-over");
             const dragData_1 = event_1.dataTransfer.getData("text/plain");
