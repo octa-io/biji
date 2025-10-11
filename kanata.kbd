@@ -270,7 +270,7 @@ that are done by kanata.
 
 (deflayer symbols
   _    _    _     _    _    _   _    _      _       _     _    _   _   _
-  S--  {    S-7   S-8  S-9  }   XX   @tbase @textra @ttap XX   XX  XX  XX
+  S--  S-[  S-7   S-8  S-9  S-]   XX   @tbase @textra @ttap XX   XX  XX  XX
   bspc S-;  S-4   S-5  S-6  +   XX   rsft   rctl    ralt  rmet XX  ret
   _    S-`  S-1   S-2  S-3  S-\ XX   @lcur  @topp   ralt  XX   _
   _    _    S-9             S-0             XX      XX    XX   _
