@@ -168,7 +168,7 @@ that are done by kanata.
     (on-press-fakekey fk-qwerty release)
     (layer-switch colemak))
 
-  to-base-action (switch 
+  to-base-action (switch
     ((input virtual fk-qwerty)) @stqwrp break
     ((input virtual fk-colemak)) @stclkp break
     () @stqwrp break)
@@ -356,10 +356,10 @@ that are done by kanata.
   ;; between mouse actions. The second number is the distance traveled per interval
   ;; in pixels.
 
-  ms↑ (movemouse-up 1 1)
-  ms← (movemouse-left 1 1)
-  ms↓ (movemouse-down 1 1)
-  ms→ (movemouse-right 1 1)
+  ms↑ (movemouse-up 5 1)
+  ms← (movemouse-left 5 1)
+  ms↓ (movemouse-down 5 1)
+  ms→ (movemouse-right 5 1)
 
   ;; Mouse movement actions with linear acceleration. The first number is the
   ;; interval in milliseconds between mouse actions. The second number is the time
@@ -368,14 +368,14 @@ that are done by kanata.
   ;; per interval in pixels. The fourth number is the maximum distance traveled
   ;; per interval in pixels.
 
-  ma↑ (movemouse-accel-up 1 1000 1 5)
-  ma← (movemouse-accel-left 1 1000 1 5)
-  ma↓ (movemouse-accel-down 1 1000 1 5)
-  ma→ (movemouse-accel-right 1 1000 1 5)
+  ma↑ (movemouse-accel-up 20 2200 1 80)
+  ma← (movemouse-accel-left 20 2200 1 80)
+  ma↓ (movemouse-accel-down 20 2200 1 80)
+  ma→ (movemouse-accel-right 20 2200 1 80)
 
   ;; movemouse-speed takes a percentage by which it then scales all of the
   ;; mouse movements while held. You can have as many of these active at a
   ;; given time as you would like, but be warned that some values, such as 33
   ;; may not have correct pixel distance representations.
-  fms (movemouse-speed 200)
+  fms (movemouse-speed 400)
 )
