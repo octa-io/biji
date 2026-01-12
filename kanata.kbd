@@ -254,8 +254,8 @@ that are done by kanata.
 
   lalt  (tap-hold-release $tt $ht esc @wh-media)
   spcnav (tap-hold-release $tt $ht spc @wh-navigation)
-  ralt  (tap-hold-release $tt $ht bspc @wh-numbers)
-  prtsc  (tap-hold-release $tt $ht del @wh-functionkeys)
+  ralt (tap-hold-release $tt $ht del @wh-numbers)
+  prtsc (tap-hold-release $tt $ht prtsc @wh-functionkeys)
 )
 
 ;; The underscore _ means transparent. The key on the base layer will be used
