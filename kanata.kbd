@@ -102,21 +102,21 @@ that are done by kanata.
 ;; If you are looking for other keys, the file src/keys/mod.rs should hopefully
 ;; provide some insight.
 (defsrc
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  grv  1    2    3    4    5    6    7    8    9     0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o     p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l     ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .     /    rsft
   lctl lmet lalt           spc            ralt prtsc rmet rctl
 )
 
 ;; The first layer defined is the layer that will be active by default when
 ;; kanata starts up.
 (deflayer qwerty-miryoku-ppoi
-  @grva 1    2    3    4    5    6    7    8     9      0    -     =     bspc
-  @tab  q    w    e    r    t    y    u    i     o      p    [     ]     \
-  bspc  @a   @s   @d   @f   g    h   @j    @k    @l     @;   '     @ret
-  lsft  z    x    c    v    b    n    m    ,     .      /    rsft
-  lctl  lmet @lalt          @spcnav        @ralt @prtsc rmet rctl
+  @grva 1    2    3    4    5    6    7    8     9      0     -    =     bspc
+  @tab  q    w    e    r    t    y    u    i     o      p     [    ]     \
+  bspc  @a   @s   @d   @f   g    h   @j    @k    @l     @;    '    @ret
+  lsft  z    x    c    v    b    n    m    ,     .      /     rsft
+  lctl  lmet @lalt          @spcnav        @ralt @prtsc @rmet rctl
 )
 
 (deflayer qwerty
@@ -134,7 +134,7 @@ that are done by kanata.
   @tab  _    _    f    p    g    j    l    u     y      ;    [    ]    \
   bspc  @a   @r   @s1  @t   d    _    @n   @e    @i     @o   '    @ret
   lsft  _    _    _    _    _    k    _    ,     .      /    rsft
-  lctl  lmet @lalt          @spcnav        @ralt @prtsc rmet rctl
+  lctl  lmet @lalt          @spcnav        @ralt @prtsc @rmet rctl
 )
 
 ;; The colemak layer remaps the keys to the colemak layout. Without tap-hold
@@ -207,7 +207,7 @@ that are done by kanata.
 
 (defvar
   tap-repress-timeout 200
-  hold-timeout 200
+  hold-timeout 185
   tt $tap-repress-timeout
   ht $hold-timeout
 )
@@ -254,8 +254,9 @@ that are done by kanata.
 
   lalt  (tap-hold-release $tt $ht esc @wh-media)
   spcnav (tap-hold-release $tt $ht spc @wh-navigation)
-  ralt (tap-hold-release $tt $ht del @wh-numbers)
-  prtsc (tap-hold-release $tt $ht prtsc @wh-functionkeys)
+  ralt  (tap-hold-release $tt $ht del @wh-numbers)
+  prtsc  (tap-hold-release $tt $ht prtsc @wh-functionkeys)
+  rmet  (tap-hold-release $tt $ht rmet @wh-functionkeys)
 )
 
 ;; The underscore _ means transparent. The key on the base layer will be used
