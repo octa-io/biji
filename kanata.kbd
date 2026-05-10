@@ -112,7 +112,7 @@ that are done by kanata.
 ;; The first layer defined is the layer that will be active by default when
 ;; kanata starts up.
 (deflayer qwerty-miryoku-ppoi
-  @grva 1    2    3    4    5    6    7    8     9      0     -    =     bspc
+  @grvi 1    2    3    4    5    6    7    8     9      0     -    =     bspc
   @tab  q    w    e    r    t    y    u    i     o      p     [    ]     \
   bspc  @a   @s   @d   @f   g    h   @j    @k    @l     @;    '    @ret
   lsft  z    x    c    v    b    n    m    ,     .      /     rsft
@@ -120,19 +120,39 @@ that are done by kanata.
 )
 
 (deflayer qwerty
-  @grvb 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @grvj 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps  a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft  z    x    c    v    b    n    m    ,    .    /    rsft
   lctl  lmet lalt           spc            ralt _    rmet rctl
 )
 
+;; The colemak-dh layer remaps the keys to the colemak-dh layout. With tap-hold
+;; aliases configured.
+(deflayer colemak-dh-miryoku-ppoi
+  @grvk 1    2    3    4    5    6    7    8     9      0    -    =    bspc
+  @tab  _    _    f    p    b    j    l    u     y      ;    [    ]    \
+  bspc  @a   @r   @s   @t   g    m    @n   @e    @i     @o   '    @ret
+  lsft  _    _    _    d    v    k    h    ,     .      /    rsft
+  lctl  lmet @lalt          @spcnav        @ralt @prtsc @rmet rctl
+)
+
+;; The colemak-dh layer remaps the keys to the colemak-dh layout. Without tap-hold
+;; aliases configured.
+(deflayer colemak-dh
+  @grvl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab   _    _    f    p    b    j    l    u    y    ;    [    ]    \
+  bspc  _    r    s    t    g    m    n    e    i    o    '    ret
+  lsft  _    _    _    d    v    k    h    ,    .    /    rsft
+  lctl  lmet lalt           spc            ralt _    rmet rctl
+)
+
 ;; The colemak layer remaps the keys to the colemak layout. With tap-hold
 ;; aliases configured.
 (deflayer colemak-miryoku-ppoi
-  @grvb 1    2    3    4    5    6    7    8     9      0    -    =    bspc
+  @grvm 1    2    3    4    5    6    7    8     9      0    -    =    bspc
   @tab  _    _    f    p    g    j    l    u     y      ;    [    ]    \
-  bspc  @a   @r   @s1  @t   d    _    @n   @e    @i     @o   '    @ret
+  bspc  @a   @r   @s   @t   d    _    @n   @e    @i     @o   '    @ret
   lsft  _    _    _    _    _    k    _    ,     .      /    rsft
   lctl  lmet @lalt          @spcnav        @ralt @prtsc @rmet rctl
 )
@@ -140,45 +160,76 @@ that are done by kanata.
 ;; The colemak layer remaps the keys to the colemak layout. Without tap-hold
 ;; aliases configured.
 (deflayer colemak
-  @grva 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @grvn 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   _    _    f    p    g    j    l    u    y    ;    [    ]    \
   bspc  _    r    s    t    d    _    n    e    i    o    '    ret
   lsft  _    _    _    _    _    k    _    ,    .    /    rsft
   lctl  lmet lalt           spc            ralt _    rmet rctl
 )
 
-(deffakekeys
-  fk-qwerty XX
-  fk-colemak XX
+(defvirtualkeys
+  vk-qwerty XX
+  vk-colemak-dh XX
+  vk-colemak XX
 )
 (defalias
-  ;; aliases to change the base layer to qwerty or colemak
-  stqwrp (layer-switch qwerty-miryoku-ppoi)
-  stqwr (layer-switch qwerty)
-  stclkp (layer-switch colemak-miryoku-ppoi)
-  stclk (layer-switch colemak)
+  switch-to-qwerty (multi
+    (on-press press-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak-dh)
+    (on-press release-virtualkey vk-colemak)
+    (layer-switch qwerty))
 
   switch-to-qwerty-miryoku-ppoi (multi
-    (on-press-fakekey fk-qwerty press)
-    (on-press-fakekey fk-colemak release)
+    (on-press press-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak-dh)
+    (on-press release-virtualkey vk-colemak)
     (layer-switch qwerty-miryoku-ppoi))
 
-  switch-to-colemak-ppoi (multi
-    (on-press-fakekey fk-colemak press)
-    (on-press-fakekey fk-qwerty release)
+  switch-to-colemak-dh (multi
+    (on-press press-virtualkey vk-colemak-dh)
+    (on-press release-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak)
+    (layer-switch colemak-dh))
+
+  switch-to-colemak-dh-miryoku-ppoi (multi
+    (on-press press-virtualkey vk-colemak-dh)
+    (on-press release-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak)
+    (layer-switch colemak-dh-miryoku-ppoi))
+
+  switch-to-colemak (multi
+    (on-press press-virtualkey vk-colemak)
+    (on-press release-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak-dh)
     (layer-switch colemak))
 
-  to-base-action (switch
-    ((input virtual fk-qwerty)) @stqwrp break
-    ((input virtual fk-colemak)) @stclkp break
-    () @stqwrp break)
+  switch-to-colemak-miryoku-ppoi (multi
+    (on-press press-virtualkey vk-colemak)
+    (on-press release-virtualkey vk-qwerty)
+    (on-press release-virtualkey vk-colemak-dh)
+    (layer-switch colemak-miryoku-ppoi))
 
-  to-extra-action @stqwr
+  ;; aliases to change the base layer to qwerty, colemak-dh, or colemak
+  tqryp @switch-to-qwerty-miryoku-ppoi
+  tqry @switch-to-qwerty
+  tcdhp @switch-to-colemak-dh-miryoku-ppoi
+  tcdh @switch-to-colemak-dh
+  tclkp @switch-to-colemak-miryoku-ppoi
+  tclk @switch-to-colemak
+
+  to-base-action (switch
+    ((input virtual vk-qwerty)) @tqryp break
+    ((input virtual vk-colemak-dh)) @tcdhp break
+    ((input virtual vk-colemak)) @tclkp break
+    () @tqryp break)
+
+  to-extra-action @tqry
 
   to-tap-action (switch
-    ((input virtual fk-qwerty)) @stqwr break
-    ((input virtual fk-colemak)) @stclk break
-    () @stqwr break)
+    ((input virtual vk-qwerty)) @tqry break
+    ((input virtual vk-colemak-dh)) @tcdh break
+    ((input virtual vk-colemak)) @tclk break
+    () @tqry break)
 
   lock-current-action (switch
     ((layer navigation)) (layer-switch navigation) break
@@ -187,7 +238,7 @@ that are done by kanata.
     ((layer numbers)) (layer-switch numbers) break
     ((layer symbols)) (layer-switch symbols) break
     ((layer functionkeys)) (layer-switch functionkeys) break
-    () @stqwrp break)
+    () @tqryp break)
 
   to-opposite-action (switch
     ((layer navigation)) (layer-switch numbers) break
@@ -196,7 +247,7 @@ that are done by kanata.
     ((layer numbers)) (layer-switch navigation) break
     ((layer symbols)) (layer-switch mouse) break
     ((layer functionkeys)) (layer-switch media) break
-    () @stqwrp break)
+    () @tqryp break)
 
   tbase (tap-dance 200 (XX @to-base-action))
   textra (tap-dance 200 (XX @to-base-action))
@@ -207,8 +258,8 @@ that are done by kanata.
 
 (defvar
   tap-repress-timeout 200
-  hold-timeout 185
-  tt $tap-repress-timeout
+  hold-timeout 200
+  trt $tap-repress-timeout
   ht $hold-timeout
 )
 
@@ -220,8 +271,12 @@ that are done by kanata.
 ;; e.g. in the `anm` alias. However, an alias can only refer to another alias
 ;; that has been defined before it in the file.
 (defalias
-  wh-lswa (layer-while-held layers-switcher-a)
-  wh-lswb (layer-while-held layers-switcher-b)
+  wh-lsw-i (layer-while-held layer-switch-i)
+  wh-lsw-j (layer-while-held layer-switch-j)
+  wh-lsw-k (layer-while-held layer-switch-k)
+  wh-lsw-l (layer-while-held layer-switch-l)
+  wh-lsw-m (layer-while-held layer-switch-m)
+  wh-lsw-n (layer-while-held layer-switch-n)
   wh-navigation (layer-while-held navigation)
   wh-mse (layer-while-held mouse)
   wh-media (layer-while-held media)
@@ -229,34 +284,42 @@ that are done by kanata.
   wh-sym (layer-while-held symbols)
   wh-functionkeys (layer-while-held functionkeys)
 
-  grl  (tap-hold 200 200 grv @wh-lswa)
-  grva (tap-hold-press 200 200 grv @wh-lswa)
-  grvb (tap-hold-press 200 200 grv @wh-lswb)
+  grvi (tap-hold-press 200 250 grv @wh-lsw-i)
+  grvj (tap-hold-press 200 250 grv @wh-lsw-j)
+  grvk (tap-hold-press 200 250 grv @wh-lsw-k)
+  grvl (tap-hold-press 200 250 grv @wh-lsw-l)
+  grvm (tap-hold-press 200 250 grv @wh-lsw-m)
+  grvn (tap-hold-press 200 250 grv @wh-lsw-n)
 
-  tab (tap-hold-release $tt $ht tab @wh-mse)
-  a   (tap-hold-release $tt $ht a   lmet)
-  s   (tap-hold-release $tt $ht s   lalt)
-  d   (tap-hold-release $tt $ht d   lctl)
-  f   (tap-hold-release $tt $ht f   lsft)
-  j   (tap-hold-release $tt $ht j   rsft)
-  k   (tap-hold-release $tt $ht k   rctl)
-  l   (tap-hold-release $tt $ht l   ralt)
-  ;   (tap-hold-release $tt $ht ;   rmet)
-  ret (tap-hold-release $tt $ht ret @wh-sym)
+  s-action (switch
+    ((layer qwerty-miryoku-ppoi)) (tap-hold $trt $ht s lalt) break
+    ((layer colemak-dh-miryoku-ppoi)) (tap-hold $trt $ht s lctl) break
+    ((layer colemak-miryoku-ppoi)) (tap-hold $trt $ht s lctl) break
+    () (tap-hold $trt $ht s lalt) break)
 
-  r   (tap-hold-release $tt $ht r   lalt)
-  s1  (tap-hold-release $tt $ht s   lctl)
-  t   (tap-hold-release $tt $ht t   lsft)
-  n   (tap-hold-release $tt $ht n   rsft)
-  e   (tap-hold-release $tt $ht e   rctl)
-  i   (tap-hold-release $tt $ht i   ralt)
-  o   (tap-hold-release $tt $ht o   rmet)
+  tab (tap-hold-release $trt $ht tab @wh-mse)
+  a   (tap-hold $trt $ht a   lmet)
+  s   @s-action
+  d   (tap-hold $trt $ht d   lctl)
+  f   (tap-hold-release $trt $ht f   lsft)
+  j   (tap-hold-release $trt $ht j   rsft)
+  k   (tap-hold $trt $ht k   rctl)
+  l   (tap-hold $trt $ht l   ralt)
+  ;   (tap-hold $trt $ht ;   rmet)
+  ret (tap-hold-release $trt $ht ret @wh-sym)
 
-  lalt  (tap-hold-release $tt $ht esc @wh-media)
-  spcnav (tap-hold-release $tt $ht spc @wh-navigation)
-  ralt  (tap-hold-release $tt $ht del @wh-numbers)
-  prtsc  (tap-hold-release $tt $ht prtsc @wh-functionkeys)
-  rmet  (tap-hold-release $tt $ht rmet @wh-functionkeys)
+  r   (tap-hold $trt $ht r   lalt)
+  t   (tap-hold-release $trt $ht t   lsft)
+  n   (tap-hold-release $trt $ht n   rsft)
+  e   (tap-hold $trt $ht e   rctl)
+  i   (tap-hold $trt $ht i   ralt)
+  o   (tap-hold $trt $ht o   rmet)
+
+  lalt  (tap-hold-release $trt $ht esc lalt)
+  spcnav (tap-hold-release $trt $ht spc @wh-navigation)
+  ralt  (tap-hold-release $trt $ht del @wh-numbers)
+  prtsc  (tap-hold-release $trt $ht prtsc @wh-functionkeys)
+  rmet  (tap-hold-release $trt $ht rmet @wh-functionkeys)
 )
 
 ;; The underscore _ means transparent. The key on the base layer will be used
@@ -285,30 +348,9 @@ that are done by kanata.
   _    _    menu           spc              XX      XX    XX   _
 )
 
-;; The `lrld` action stands for "live reload".
-;; The variants `lrpv` and `lrnx` will cycle between multiple configuration files
-;; if they are specified in the startup arguments.
-;; The list action variant `lrld-num` takes a number parameter and
-;; reloads the configuration file specified by the number, according to the
-;; order passed into the arguments on kanata startup.
-(deflayer layers-switcher-a
-  _    @stqwr @stclkp _    _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
-  _    _      _       _    _    _    _    _    _    _    _    _    _    _
-  _    _      _       _    _    _    _    _    _    _    _    _    _
-  _    _      _       _    _    _    _    _    _    _    _    _
-  _    _      _                 _              _    _    _    _
-)
-(deflayer layers-switcher-b
-  _    @stqwrp @stclk _    _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
-  _    _       _      _    _    _    _    _    _    _    _    _    _    _
-  _    _       _      _    _    _    _    _    _    _    _    _    _
-  _    _       _      _    _    _    _    _    _    _    _    _
-  _    _       _                _              _    _    _    _
-)
-
 (defalias redo (multi C-y))
 (defalias copy (multi C-c))
-(defalias paste (multi C-v))
+(defalias paste (tap-dance 200 ((multi C-v) (multi M-v))))
 (defalias cut (multi C-x))
 (defalias undo (multi C-z))
 
@@ -334,6 +376,55 @@ that are done by kanata.
   bspc lmet  lalt  lctl    lsft   XX   XX  ◀◀   🔉   🔊   ▶▶  XX   ⏹
   _    XX    ralt  @topp   @lcur  XX   XX  XX    XX    XX   XX   XX
   _    _     XX                   XX             ▶⏸  🔇   _    _
+)
+
+;; The `lrld` action stands for "live reload".
+;; The variants `lrpv` and `lrnx` will cycle between multiple configuration files
+;; if they are specified in the startup arguments.
+;; The list action variant `lrld-num` takes a number parameter and
+;; reloads the configuration file specified by the number, according to the
+;; order passed into the arguments on kanata startup.
+(deflayer layer-switch-i
+  _    @tqry @tcdhp @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _      _       _       _    _    _    _    _    _    _    _    _    _
+  _    _      _       _       _    _    _    _    _    _    _    _    _
+  _    _      _       _       _    _    _    _    _    _    _    _
+  _    _      _                    _              _    _    _    _
+)
+(deflayer layer-switch-j
+  _    @tqryp @tcdh @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _
+  _    _       _                   _              _    _    _    _
+)
+(deflayer layer-switch-k
+  _    @tqryp @tcdh @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _
+  _    _       _                   _              _    _    _    _
+)
+(deflayer layer-switch-l
+  _    @tqry @tcdhp @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _
+  _    _       _                   _              _    _    _    _
+)
+(deflayer layer-switch-m
+  _    @tqryp @tcdhp @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _
+  _    _       _                   _              _    _    _    _
+)
+(deflayer layer-switch-n
+  _    @tqry @tcdh @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _    _
+  _    _       _      _      _    _    _    _    _    _    _    _
+  _    _       _                   _              _    _    _    _
 )
 
 (defalias
