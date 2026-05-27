@@ -259,8 +259,10 @@ that are done by kanata.
 (defvar
   tap-repress-timeout 200
   hold-timeout 200
+  hold-timeout-release 150
   trt $tap-repress-timeout
   ht $hold-timeout
+  htr $hold-timeout-release
 )
 
 ;; defalias is used to declare a shortcut for a more complicated action to keep
@@ -301,16 +303,16 @@ that are done by kanata.
   a   (tap-hold $trt $ht a   lmet)
   s   @s-action
   d   (tap-hold $trt $ht d   lctl)
-  f   (tap-hold-release $trt $ht f   lsft)
-  j   (tap-hold-release $trt $ht j   rsft)
+  f   (tap-hold-release $trt $htr f lsft)
+  j   (tap-hold-release $trt $htr j rsft)
   k   (tap-hold $trt $ht k   rctl)
   l   (tap-hold $trt $ht l   ralt)
   ;   (tap-hold $trt $ht ;   rmet)
   ret (tap-hold-release $trt $ht ret @wh-sym)
 
   r   (tap-hold $trt $ht r   lalt)
-  t   (tap-hold-release $trt $ht t   lsft)
-  n   (tap-hold-release $trt $ht n   rsft)
+  t   (tap-hold-release $trt $htr t lsft)
+  n   (tap-hold-release $trt $htr n rsft)
   e   (tap-hold $trt $ht e   rctl)
   i   (tap-hold $trt $ht i   ralt)
   o   (tap-hold $trt $ht o   rmet)
