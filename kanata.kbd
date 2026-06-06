@@ -462,14 +462,14 @@ that are done by kanata.
   ;; per interval in pixels. The fourth number is the maximum distance traveled
   ;; per interval in pixels.
 
-  ma↑ (movemouse-accel-up 20 2200 1 80)
-  ma← (movemouse-accel-left 20 2200 1 80)
-  ma↓ (movemouse-accel-down 20 2200 1 80)
-  ma→ (movemouse-accel-right 20 2200 1 80)
+  ma↑ (movemouse-accel-up    10 500 1 35)
+  ma← (movemouse-accel-left  10 500 1 35)
+  ma↓ (movemouse-accel-down  10 500 1 35)
+  ma→ (movemouse-accel-right 10 500 1 35)
 
   ;; movemouse-speed takes a percentage by which it then scales all of the
   ;; mouse movements while held. You can have as many of these active at a
   ;; given time as you would like, but be warned that some values, such as 33
   ;; may not have correct pixel distance representations.
-  fms (movemouse-speed 400)
+  fms (movemouse-speed 20)
 )
