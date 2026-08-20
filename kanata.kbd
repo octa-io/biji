@@ -102,6 +102,7 @@ that are done by kanata.
 ;; If you are looking for other keys, the file src/keys/mod.rs should hopefully
 ;; provide some insight.
 (defsrc
+  f23
   grv  1    2    3    4    5    6    7    8    9     0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o     p    [    ]    \
   caps a    s    d    f    g    h    j    k    l     ;    '    ret
@@ -109,9 +110,15 @@ that are done by kanata.
   lctl lmet lalt           spc            ralt prtsc rmet rctl
 )
 
+;; Remap Copilot key to RightControl
+(defchordsv2
+  (lsft lmet f23) rctl 10 all-released ()
+)
+
 ;; The first layer defined is the layer that will be active by default when
 ;; kanata starts up.
 (deflayer qwerty-miryoku-ppoi
+  _
   @grvi 1    2    3    4    5    6    7    8     9      0     -    =     bspc
   @tab  q    w    e    r    t    y    u    i     o      p     [    ]     \
   bspc  @a   @s   @d   @f   g    h   @j    @k    @l     @;    '    @ret
@@ -120,6 +127,7 @@ that are done by kanata.
 )
 
 (deflayer qwerty
+  _
   @grvj 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps  a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -130,6 +138,7 @@ that are done by kanata.
 ;; The colemak-dh layer remaps the keys to the colemak-dh layout. With tap-hold
 ;; aliases configured.
 (deflayer colemak-dh-miryoku-ppoi
+  _
   @grvk 1    2    3    4    5    6    7    8     9      0    -    =    bspc
   @tab  _    _    f    p    b    j    l    u     y      ;    [    ]    \
   bspc  @a   @r   @s   @t   g    m    @n   @e    @i     @o   '    @ret
@@ -140,6 +149,7 @@ that are done by kanata.
 ;; The colemak-dh layer remaps the keys to the colemak-dh layout. Without tap-hold
 ;; aliases configured.
 (deflayer colemak-dh
+  _
   @grvl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   _    _    f    p    b    j    l    u    y    ;    [    ]    \
   bspc  _    r    s    t    g    m    n    e    i    o    '    ret
@@ -150,6 +160,7 @@ that are done by kanata.
 ;; The colemak layer remaps the keys to the colemak layout. With tap-hold
 ;; aliases configured.
 (deflayer colemak-miryoku-ppoi
+  _
   @grvm 1    2    3    4    5    6    7    8     9      0    -    =    bspc
   @tab  _    _    f    p    g    j    l    u     y      ;    [    ]    \
   bspc  @a   @r   @s   @t   d    _    @n   @e    @i     @o   '    @ret
@@ -160,6 +171,7 @@ that are done by kanata.
 ;; The colemak layer remaps the keys to the colemak layout. Without tap-hold
 ;; aliases configured.
 (deflayer colemak
+  _
   @grvn 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab   _    _    f    p    g    j    l    u    y    ;    [    ]    \
   bspc  _    r    s    t    d    _    n    e    i    o    '    ret
@@ -327,6 +339,7 @@ that are done by kanata.
 ;; The underscore _ means transparent. The key on the base layer will be used
 ;; instead. XX means no-op. The key will do nothing.
 (deflayer numbers
+  _
   _    _    _    _    _    _    _    _      _       _     _    _    _    _
   -    [    7    8    9    ]    XX   @tbase @textra @ttap XX   XX   XX   XX
   bspc ;    4    5    6    =    XX   rsft   rctl    ralt  rmet XX  ret
@@ -335,6 +348,7 @@ that are done by kanata.
 )
 
 (deflayer symbols
+  _
   _    _    _     _    _    _   _    _      _       _     _    _   _   _
   S--  S-[  S-7   S-8  S-9  S-]   XX   @tbase @textra @ttap XX   XX  XX  XX
   bspc S-;  S-4   S-5  S-6  +   XX   rsft   rctl    ralt  rmet XX  ret
@@ -343,6 +357,7 @@ that are done by kanata.
 )
 
 (deflayer functionkeys
+  _
   _    _    _    _    _    _     _   _      _       _     _    _   _   _
   tab  f12  f7   f8   f9   ssrq  XX  @tbase @textra @ttap XX   XX  XX  XX
   bspc f11  f4   f5   f6   slck  XX  rsft   rctl    ralt  rmet XX  ret
@@ -357,6 +372,7 @@ that are done by kanata.
 (defalias undo (multi C-z))
 
 (deflayer navigation
+  _
   _    _    _     _       _      _    _     _      _     _    _     _    _    _
   tab  XX   @ttap @textra @tbase XX   @redo @paste @copy @cut @undo XX   XX   XX
   bspc lmet lalt  lctl    lsft   XX   caps  left   down  up   rght  XX   ret
@@ -365,6 +381,7 @@ that are done by kanata.
 )
 
 (deflayer mouse
+  _
   _    _    _     _       _      _    _     @ms←   @ms↓  @ms↑ @ms→  _    _    _
   tab  XX   @ttap @textra @tbase XX   @redo @paste @copy @cut @undo XX   XX   XX
   bspc lmet lalt  lctl    lsft   XX   mbck  @ma←   @ma↓  @ma↑ @ma→  mfwd   ret
@@ -373,6 +390,7 @@ that are done by kanata.
 )
 
 (deflayer media
+  _
   _    _     _     _       _      _    _   _     _     _    _    _    _    _
   _    XX    @ttap @textra @tbase XX   XX  XX    XX    XX   XX   XX   XX   XX
   bspc lmet  lalt  lctl    lsft   XX   XX  ◀◀   🔉   🔊   ▶▶  XX   ⏹
@@ -387,6 +405,7 @@ that are done by kanata.
 ;; reloads the configuration file specified by the number, according to the
 ;; order passed into the arguments on kanata startup.
 (deflayer layer-switch-i
+  _
   _    @tqry @tcdhp @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _      _       _       _    _    _    _    _    _    _    _    _    _
   _    _      _       _       _    _    _    _    _    _    _    _    _
@@ -394,6 +413,7 @@ that are done by kanata.
   _    _      _                    _              _    _    _    _
 )
 (deflayer layer-switch-j
+  _
   _    @tqryp @tcdh @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _
@@ -401,6 +421,7 @@ that are done by kanata.
   _    _       _                   _              _    _    _    _
 )
 (deflayer layer-switch-k
+  _
   _    @tqryp @tcdh @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _
@@ -408,6 +429,7 @@ that are done by kanata.
   _    _       _                   _              _    _    _    _
 )
 (deflayer layer-switch-l
+  _
   _    @tqry @tcdhp @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _
@@ -415,6 +437,7 @@ that are done by kanata.
   _    _       _                   _              _    _    _    _
 )
 (deflayer layer-switch-m
+  _
   _    @tqryp @tcdhp @tclk _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _
@@ -422,6 +445,7 @@ that are done by kanata.
   _    _       _                   _              _    _    _    _
 )
 (deflayer layer-switch-n
+  _
   _    @tqry @tcdh @tclkp _    lrld lrpv lrnx (lrld-num 1) _ _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _    _
   _    _       _      _      _    _    _    _    _    _    _    _    _
